@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '30days': 'https://disaster.gistda.or.th/api/1.0/documents/flood/30days/tms/{z}/{x}/{y}.png?api_key=doncs9sePomiJFpqYgHpTL0QJU2akbKCP5agvHkucK96YlEm7CTA3FCBxXReT9Dz'
     };
 
-    let currentFloodLayer = L.tileLayer(floodMapUrls['1day'], {
+    let currentFloodLayer = L.tileLayer(floodMapUrls['7days'], {
         tileSize: 512,
         zoomOffset: -1,
         attribution: '&copy; <a href="https://gistda.or.th">GISTDA</a> contributors'
