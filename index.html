@@ -44,7 +44,7 @@
         #map {
             grid-column: 1;
             grid-row: 3;
-            height: 400px; /* ความสูงเริ่มต้นสำหรับหน้าจอเล็ก */
+            height: 600px; /* ความสูงเริ่มต้นสำหรับหน้าจอเล็ก */
         }
 
         /* ปรับแผนที่และเนื้อหาในหน้าจอขนาดใหญ่ */
@@ -65,6 +65,11 @@
                 height: 100%;
             }
         }
+
+        /* ปุ่มเลือกแผนที่น้ำท่วม */
+        #floodMapSelector {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -76,19 +81,37 @@
         </header>
 
         <!-- ข้อความหรือข้อมูล -->
+
         <div id="text">
             <h2>ข้อมูลแผนที่น้ำท่วม</h2>
             <p>
-                แผนที่นี้แสดงสถานะของพื้นที่ที่มีน้ำท่วมภายใน 3 วันที่ผ่านมา โดยข้อมูลได้รับจากระบบของ GISTDA
+                แผนที่นี้แสดงสถานะของพื้นที่ที่มีน้ำท่วม โดยคุณสามารถเลือกช่วงเวลาของข้อมูลน้ำท่วมได้จากตัวเลือกด้านล่าง:
             </p>
-            <p>
-                คุณสามารถคลิกที่หมุดบ้านเพื่อดูรายละเอียดตำแหน่งบ้านและเพิ่มคำอธิบายได้
-            </p>
+            <select id="floodMapSelector">
+                <option value="1day">น้ำท่วมใน 1 วันที่ผ่านมา</option>
+                <!-- <option value="3days">น้ำท่วมใน 3 วันที่ผ่านมา</option> -->
+                <option value="7days">น้ำท่วมใน 7 วันที่ผ่านมา</option>
+                <option value="30days">น้ำท่วมใน 30 วันที่ผ่านมา</option>
+            </select>
+
+            <!-- Add this form inside the container div in index.html -->
+            <div id="pinForm" style="display:none; position: absolute; top: center; left: 20px; background-color: white; padding: 10px; border: 1px solid #ccc; z-index: 1000;">
+                <h3>เพิ่มหมุดใหม่</h3>
+                <label for="pinName">ชื่อหมุด:</label><br>
+                <input type="text" id="pinName" name="pinName"><br><br>
+                <label for="pinDesc">คำอธิบาย:</label><br>
+                <textarea id="pinDesc" name="pinDesc"></textarea><br><br>
+                <button id="savePin">บันทึกหมุด</button>
+                <button id="cancelPin">ยกเลิก</button>
+            </div>
         </div>
 
         <!-- แผนที่ -->
         <div id="map"></div>
     </div>
+
+    
+
 
     <!-- โหลดไลบรารีและสคริปต์ -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
